@@ -123,7 +123,7 @@ def main() -> int:
       bbox.xmin BETWEEN {xmin} AND {xmax}
       AND bbox.ymin BETWEEN {ymin} AND {ymax}
       AND addresses[1].country = 'AU'
-      AND addresses[1].region = 'AU-QLD'
+      AND addresses[1].region IN ('QLD', 'AU-QLD')
       AND websites IS NOT NULL
       AND confidence >= {MIN_CONFIDENCE}
       AND (operating_status IS NULL OR operating_status <> 'permanently_closed')
