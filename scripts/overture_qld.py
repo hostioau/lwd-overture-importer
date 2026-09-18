@@ -13,7 +13,7 @@ OUT = ROOT / "output" / "qld_web_candidates.csv"
 EXCLUDE = ROOT / "config" / "exclude_domains.txt"
 
 QLD_BBOX = (137.99, -29.20, 153.56, -9.10)
-MAX_RAW = 8000
+MAX_RAW = 15000
 MAX_OUTPUT = 3000
 MIN_CONFIDENCE = 0.60
 
@@ -180,7 +180,7 @@ def main() -> int:
         })
 
     selected.sort(key=lambda x: (-int(x["relevance_score"]), -float(x["overture_confidence"] or 0), x["business_name"].lower()))
-    selected = selected[:MAX_OUTPUT]
+    selected = selected[:]
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     fields = list(selected[0].keys()) if selected else [
